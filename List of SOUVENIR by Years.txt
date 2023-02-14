@@ -1,0 +1,5 @@
+2018: [Souvenir: T-shirt, Siemens( USA ), Year Of Release: 2018, Price: 4 euro]
+2019: [Souvenir: Pen, Boeing( USA ), Year Of Release: 2019, Price: 3 euro]
+2020: [Souvenir: Cup, Channel( France ), Year Of Release: 2020, Price: 5 euro, Souvenir: Cup, Kyivstar( Ukraine ), Year Of Release: 2020, Price: 6 euro]
+2022: [Souvenir: Notebook, Adidas( Germany ), Year Of Release: 2022, Price: 7 euro]
+2222: [Souvenir: Pen, Boeing( USA ), Year Of Release: 2222, Price: 2 euro]

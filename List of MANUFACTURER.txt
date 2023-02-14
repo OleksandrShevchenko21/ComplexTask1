@@ -1,0 +1,5 @@
+Boeing( USA )
+Siemens( USA )
+Channel( France )
+Kyivstar( Ukraine )
+Adidas( Germany )
