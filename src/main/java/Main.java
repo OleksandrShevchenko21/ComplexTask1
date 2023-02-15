@@ -1,7 +1,6 @@
 import controllers.SouvenirController;
 import dao.SouvenirDAO;
 import dao.SouvenirFileDAO;
-import models.Manufacturer;
 import models.Souvenir;
 import services.SouvenirService;
 

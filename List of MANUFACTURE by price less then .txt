@@ -1,7 +1,10 @@
-Boeing( USA ): 
-Cup - Price: 2 euro - Year: 2018
-Pen - Price: 3 euro - Year: 2019
+Sandora( Ukraine ): 
+T-shirt - Price: 3 euro - Year: 2023
 Siemens( USA ): 
 T-shirt - Price: 4 euro - Year: 2018
+Adidas( Germany ): 
+Notebook - Price: 7 euro - Year: 2022
+Kyivstar( Ukraine ): 
+Cup - Price: 6 euro - Year: 2020
 Channel( France ): 
 Cup - Price: 5 euro - Year: 2020

@@ -12,17 +12,15 @@ import java.time.LocalDate;
 public class Souvenir {
     String souvenirName;
     Manufacturer manufacturer;
-//    int releaseYear;
-LocalDate dateOfRelease;
+    LocalDate dateOfRelease;
     int price;
 
     @Override
     public String toString() {
         return "Souvenir: " +
-                 souvenirName +
+                souvenirName +
                 ", " + manufacturer +
-//                ", Year Of Release: " + releaseYear +
                 ", Date Of Release: " + dateOfRelease +
-                ", Price: " + price+" euro";
+                ", Price: " + price + " euro";
     }
 }

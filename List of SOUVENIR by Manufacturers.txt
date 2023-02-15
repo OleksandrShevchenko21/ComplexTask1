@@ -1,6 +1,5 @@
-Boeing( USA ): 
-Souvenir: Cup, Boeing( USA ), Date Of Release: 2018-10-15, Price: 2 euro
-Souvenir: Pen, Boeing( USA ), Date Of Release: 2019-03-15, Price: 3 euro
+Sandora( Ukraine ): 
+Souvenir: T-shirt, Sandora( Ukraine ), Date Of Release: 2023-02-15, Price: 3 euro
 Siemens( USA ): 
 Souvenir: T-shirt, Siemens( USA ), Date Of Release: 2018-05-15, Price: 4 euro
 Adidas( Germany ): 
