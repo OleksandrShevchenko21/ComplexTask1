@@ -5,15 +5,18 @@ import models.Souvenir;
 import services.SouvenirService;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class SouvenirController {
     Scanner in = new Scanner(System.in);
     private SouvenirService souvenirService;
+    private Helper helper = new Helper();
 
     public SouvenirController(SouvenirService souvenirService) {
         this.souvenirService = souvenirService;
+
     }
 
     //-----------------------Creating List of Souvenirs--------------------------
@@ -44,21 +47,17 @@ public class SouvenirController {
     public List<Souvenir> saveSouvenirController() {
 
         System.out.println("Enter the name of souvenir: ");
-//        String souvenirName = "Cup";
-//        Manufacturer manufacturerSouvenir = new Manufacturer("Toyota", "Japan");
-//        int releaseYearSouvenir = 2020;
-//        int priceSouvenir = 5;
         String souvenirName = in.nextLine();
         System.out.println("Enter the name of manufacture: ");
         String manufactureName = in.nextLine();
         System.out.println("Enter the country of manufacture: ");
         String manufactureCountry = in.nextLine();
 
-        int releaseYearSouvenir = readInt("Enter the year of release: ");
-        int priceSouvenir = readInt("Enter the price of souvenir: ");
+        LocalDate dateOfRelease = helper.readDate("Enter new date of release (yyyy-mm-dd): ");
+        int priceSouvenir = helper.readInt("Enter the price of souvenir: ");
 
         Manufacturer manufacturerSouvenir = new Manufacturer(manufactureName, manufactureCountry);
-        Souvenir souvenir = new Souvenir(souvenirName, manufacturerSouvenir, releaseYearSouvenir, priceSouvenir);
+        Souvenir souvenir = new Souvenir(souvenirName, manufacturerSouvenir, dateOfRelease, priceSouvenir);
         return souvenirService.saveSouvenirService(souvenir);
     }
 
@@ -69,7 +68,7 @@ public class SouvenirController {
         System.out.println("Enter the name of manufacturer to determine the souvenir for edit");
         String souvenirManufactureNameEdit = in.nextLine();
 
-        Souvenir souvenirToEdit = findSouvenirForEdit(souvenirs, souvenirNameToEdit, souvenirManufactureNameEdit);
+        Souvenir souvenirToEdit = helper.findSouvenirForEdit(souvenirs, souvenirNameToEdit, souvenirManufactureNameEdit);
 
         if (souvenirToEdit == null) {
             System.out.println("Souvenir doesn't exist");
@@ -84,22 +83,14 @@ public class SouvenirController {
             String manufactureCountry = in.nextLine();
             souvenirToEdit.setManufacturer(new Manufacturer(manufactureName, manufactureCountry));
 
-            souvenirToEdit.setReleaseYear(readInt("Enter the year of release: "));
-            souvenirToEdit.setPrice(readInt("Enter the price of souvenir: "));
+            souvenirToEdit.setDateOfRelease(helper.readDate("Enter new date of release (yyyy-mm-dd): "));
+            souvenirToEdit.setPrice(helper.readInt("Enter the price of souvenir: "));
+            return souvenirService.editSouvenirService(souvenirs);
         }
 
 
-        return souvenirService.editSouvenirService(souvenirs);
-
     }
-
-    private Souvenir findSouvenirForEdit(List<Souvenir> souvenirs, String souvenirNameToEdit, String souvenirManufactureNameEdit) {
-        return souvenirs.stream().filter(s -> s.getSouvenirName().equals(souvenirNameToEdit)
-                        && s.getManufacturer().getManufacturerName().equals(souvenirManufactureNameEdit))
-                .findFirst()
-                .orElse(null);
-    }
-
+    //        Вывести информацию о сувенирах заданного производителя.
     //-----------------------Get a souvenirs by a given manufacturer--------------------------
     public void getSouvenirByOneManufacturers(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<Manufacturer, List<Souvenir>> listByOneManufacturer = new HashMap<>();
@@ -107,25 +98,20 @@ public class SouvenirController {
         System.out.println("Enter the name of manufacturer to filter by name");
         String nameOfOneManufacture = in.nextLine();
 
-        Souvenir souvenirsForFilter = findSouvenirForFilter(souvenirs, nameOfOneManufacture);
+        Souvenir souvenirsByManufactureName = helper.findSouvenirByManufactureName(souvenirs, nameOfOneManufacture);
 
-        if (souvenirsForFilter == null) {
-            System.out.println("Souvenirs do not exist");
+        if (souvenirsByManufactureName == null) {
+            System.out.println("Souvenirs of this manufacture do not exist in this list");
 
         } else {
             listByOneManufacturer = souvenirs.stream()
                     .filter(m -> m.getManufacturer().getManufacturerName().equals(nameOfOneManufacture))
                     .collect(Collectors.groupingBy(m -> m.getManufacturer()));
+            souvenirService.getByOneManufacturerService(listByOneManufacturer);
         }
-        souvenirService.getByOneManufacturerService(listByOneManufacturer);
     }
 
-    private Souvenir findSouvenirForFilter(List<Souvenir> souvenirs, String nameOfOneManufacture) {
-        return souvenirs.stream().filter(s -> s.getManufacturer().getManufacturerName().equals(nameOfOneManufacture))
-                .findFirst()
-                .orElse(null);
-    }
-
+    //        Вывести информацию о сувенирах, произведенных в заданной стране.
     //-----------------------Get a souvenirs by a given country--------------------------
     public void getSouvenirByOneCountry(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<String, List<Souvenir>> listByCountry = new HashMap<>();
@@ -133,28 +119,35 @@ public class SouvenirController {
         System.out.println("Enter the name of country to filter by");
         String nameOfOneCountry = in.nextLine();
 
-        listByCountry = souvenirs.stream()
-                .filter(m -> m.getManufacturer().getManufacturerCountry().equals(nameOfOneCountry))
-                .collect(Collectors.groupingBy(m -> m.getManufacturer().getManufacturerCountry()));
+        Souvenir souvenirsByManufactureCountry = helper.findSouvenirByCountryName(souvenirs, nameOfOneCountry);
 
-        souvenirService.getByOneCountryService(listByCountry);
+        if (souvenirsByManufactureCountry == null) {
+            System.out.println("Souvenirs from this country do not exist in this list");
+
+        } else {
+            listByCountry = souvenirs.stream()
+                    .filter(m -> m.getManufacturer().getManufacturerCountry().equals(nameOfOneCountry))
+                    .collect(Collectors.groupingBy(m -> m.getManufacturer().getManufacturerCountry()));
+
+            souvenirService.getByOneCountryService(listByCountry);
+        }
     }
-
+    //        Вывести информацию о производителях, чьи цены на сувениры меньше заданной.
     //-----------------------Get a souvenirs by a given price less then--------------------------
     public void getSouvenirByPriceLessThen(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<Manufacturer, List<String>> manufacturerListByPrice = new HashMap<>();
 
-        int lessPrice = readInt("Enter a price to show a manufacturers whose souvenir price is less than the entered price:");
+        int lessPrice = helper.readInt("Enter a price to show a manufacturers whose souvenir price is less than the entered price:");
         manufacturerListByPrice = souvenirs.stream()
                 .filter(s -> s.getPrice() < lessPrice)
                 .collect(Collectors.groupingBy(s -> s.getManufacturer(),
 
-                        Collectors.mapping(s -> s.getSouvenirName() + " - Price: " + s.getPrice() + " euro - Year: " + s.getReleaseYear(),
+                        Collectors.mapping(s -> s.getSouvenirName() + " - Price: " + s.getPrice() + " euro - Year: " + s.getDateOfRelease().getYear(),
                                 Collectors.toList())));
 
         souvenirService.getSouvenirByPriceLessThenService(manufacturerListByPrice);
     }
-
+    //        Вывести информацию по всем производителям и, для каждого производителя вывести информацию о всех сувенирах, которые он производит.
     //-----------------------Get a souvenirs by all manufacturers--------------------------
     public void getSouvenirByManufacturers(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<Manufacturer, List<Souvenir>> listByManufacturers = new HashMap<>();
@@ -164,23 +157,23 @@ public class SouvenirController {
 
         souvenirService.getByManufacturersService(listByManufacturers);
     }
-
+    //        Вывести информацию о производителях заданного сувенира, произведенного в заданном году.
     //-----------------------Get a souvenirs by a given name and year--------------------------
     public void getSouvenirByNameAndYear(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<String, List<String>> listByNameAndYear = new HashMap<>();
 
-        int oneYear = readInt("Enter the interested year");
+        int oneYear = helper.readInt("Enter the interested year");
 
         System.out.println("Enter the name of interested souvenir");
         String nameOfSouvenir = in.nextLine();
 
-        Souvenir souvenirByNameAndYear = findSouvenirByNameAndYear(souvenirs, oneYear, nameOfSouvenir);
+        Souvenir souvenirByNameAndYear = helper.findSouvenirByNameAndYear(souvenirs, oneYear, nameOfSouvenir);
         if (souvenirByNameAndYear == null) {
             System.out.println("Souvenirs do not exist");
         } else {
             listByNameAndYear = souvenirs.stream()
-                    .filter(s -> s.getReleaseYear() == oneYear && s.getSouvenirName().equals(nameOfSouvenir))
-                    .collect(Collectors.groupingBy(s -> s.getSouvenirName() + " - " + s.getReleaseYear(),
+                    .filter(s -> s.getDateOfRelease().getYear() == oneYear && s.getSouvenirName().equals(nameOfSouvenir))
+                    .collect(Collectors.groupingBy(s -> s.getSouvenirName() + " - " + s.getDateOfRelease().getYear(),
 
                             Collectors.mapping(s -> s.getManufacturer().getManufacturerName() + "( " + s.getManufacturer().getManufacturerCountry()
                                             + " ) - Price: " + s.getPrice() + " euro",
@@ -189,25 +182,19 @@ public class SouvenirController {
         }
         souvenirService.getByNameAndYearService(listByNameAndYear);
     }
-
-    private Souvenir findSouvenirByNameAndYear(List<Souvenir> souvenirs, int oneYear, String nameOfSouvenir) {
-        return souvenirs.stream().filter(s -> s.getReleaseYear() == oneYear && s.getSouvenirName().equals(nameOfSouvenir))
-                .findFirst()
-                .orElse(null);
-    }
-
+    //        Для каждого года вывести список сувениров, произведенных в этом году.
     //-----------------------Get a souvenirs by all years--------------------------
     public void getSouvenirByYears(List<Souvenir> souvenirs) throws FileNotFoundException {
         Map<Integer, List<Souvenir>> mapByYears = new HashMap<>();
 
         mapByYears = souvenirs.stream()
 
-                .collect(Collectors.groupingBy(s -> s.getReleaseYear()));
+                .collect(Collectors.groupingBy(s -> s.getDateOfRelease().getYear()));
 
 
         souvenirService.getByYearsService(mapByYears);
     }
-
+    //       Удалить заданного производителя и его сувениры.
     //-----------------------Remove a souvenir by a given manufacturer--------------------------
     public List<Souvenir> removeSouvenirsByManufacture(List<Souvenir> souvenirs) {
 
@@ -215,23 +202,17 @@ public class SouvenirController {
 
         String removeManufactureName = in.nextLine();
 
-        souvenirs = souvenirs.stream()
-                .filter(s -> !s.getManufacturer().getManufacturerName().equals(removeManufactureName))
-                .collect(Collectors.toList());
-        return souvenirService.removeSouvenirsByManufactureService(souvenirs);
-    }
+        Souvenir souvenirsByManufactureName = helper.findSouvenirByManufactureName(souvenirs, removeManufactureName);
 
+        if (souvenirsByManufactureName == null) {
+            System.out.println("This manufacture do not exist in this list");
+            return souvenirs;
+        } else {
 
-    public int readInt(String s) {
-        while (true) {
-            System.out.println(s);
-            try {
-                return Integer.parseInt(in.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer");
-            }
+            souvenirs = souvenirs.stream()
+                    .filter(s -> !s.getManufacturer().getManufacturerName().equals(removeManufactureName))
+                    .collect(Collectors.toList());
+            return souvenirService.removeSouvenirsByManufactureService(souvenirs);
         }
     }
-
-
 }

@@ -1,4 +1,0 @@
-Souvenir: T-shirt, Siemens( USA ), Year Of Release: 2018, Price: 4 euro
-Souvenir: Cup, Channel( France ), Year Of Release: 2020, Price: 5 euro
-Souvenir: Cup, Kyivstar( Ukraine ), Year Of Release: 2020, Price: 6 euro
-Souvenir: Notebook, Adidas( Germany ), Year Of Release: 2022, Price: 7 euro

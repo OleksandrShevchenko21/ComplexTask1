@@ -1,1 +1,3 @@
-Boeing( USA ): [Souvenir: Pen, Boeing( USA ), Year Of Release: 2222, Price: 2 euro, Souvenir: Pen, Boeing( USA ), Year Of Release: 2019, Price: 3 euro]
+Boeing( USA ): 
+Souvenir: Cup, Boeing( USA ), Date Of Release: 2018-10-15, Price: 2 euro
+Souvenir: Pen, Boeing( USA ), Date Of Release: 2019-03-15, Price: 3 euro

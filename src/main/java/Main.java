@@ -44,6 +44,7 @@ public class Main {
 //       Удалить заданного производителя и его сувениры.
         System.out.println("11. Remove a manufacturer and list of his souvenirs.");
 
+        String pressOne = "You can press 1 to see the changes in list";
         String actionString = "====Choose a new number of action====";
         String option = " ";
         String exit = "exit ";
@@ -62,10 +63,12 @@ public class Main {
                     break;
                 case "3":
                     souvenirsListMain = souvenirController.saveSouvenirController();
+                    System.out.println(pressOne);
                     System.out.println(actionString);
                     break;
                 case "4":
                     souvenirsListMain = souvenirController.editSouvenirController(souvenirsListMain);
+                    System.out.println(pressOne);
                     System.out.println(actionString);
                     break;
                 case "5":
@@ -94,6 +97,7 @@ public class Main {
                     break;
                 case "11":
                     souvenirsListMain = souvenirController.removeSouvenirsByManufacture(souvenirsListMain);
+                    System.out.println(pressOne);
                     System.out.println(actionString);
                     break;
                 case "0":

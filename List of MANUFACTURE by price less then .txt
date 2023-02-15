@@ -1,2 +1,7 @@
-Boeing( USA ): [Pen - Price: 2 euro - Year: 2222, Pen - Price: 3 euro - Year: 2019]
-Siemens( USA ): [T-shirt - Price: 4 euro - Year: 2018]
+Boeing( USA ): 
+Cup - Price: 2 euro - Year: 2018
+Pen - Price: 3 euro - Year: 2019
+Siemens( USA ): 
+T-shirt - Price: 4 euro - Year: 2018
+Channel( France ): 
+Cup - Price: 5 euro - Year: 2020
