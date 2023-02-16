@@ -18,7 +18,7 @@ public class SouvenirFileDAO implements SouvenirDAO {
     public SouvenirFileDAO() throws FileNotFoundException {
 
         souvenirList.add(new Souvenir("Cup", new Manufacturer("Boeing", "USA"), LocalDate.of(2018, 10, 15), 2));
-        souvenirList.add(new Souvenir("Pen", new Manufacturer("Boeing", "USA"), LocalDate.of(2019, 3, 15), 3));
+        souvenirList.add(new Souvenir("T-shirt", new Manufacturer("Boeing", "USA"), LocalDate.of(2018, 3, 15), 3));
         souvenirList.add(new Souvenir("T-shirt", new Manufacturer("Siemens", "USA"), LocalDate.of(2018, 5, 15), 4));
         souvenirList.add(new Souvenir("Cup", new Manufacturer("Channel", "France"), LocalDate.of(2020, 12, 15), 5));
         souvenirList.add(new Souvenir("Cup", new Manufacturer("Kyivstar", "Ukraine"), LocalDate.of(2020, 9, 15), 6));

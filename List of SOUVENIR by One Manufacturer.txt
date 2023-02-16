@@ -1,2 +1,3 @@
-Adidas( Germany ): 
-Souvenir: Notebook, Adidas( Germany ), Date Of Release: 2022-01-15, Price: 7 euro
+Boeing( USA ): 
+Souvenir: Cup, Boeing( USA ), Date Of Release: 2018-10-15, Price: 2 euro
+Souvenir: T-Shirt, Boeing( USA ), Date Of Release: 2018-05-15, Price: 4 euro
