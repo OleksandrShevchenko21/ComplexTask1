@@ -52,56 +52,57 @@ public class Main {
             option = in.nextLine();
             switch (option) {
 
-                case "1":
+                case "1" -> {
                     souvenirController.showListSouvenirController();
                     System.out.println(actionString);
-                    break;
-                case "2":
+                }
+
+                case "2" -> {
                     souvenirController.showListManufactureController(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "3":
+                }
+                case "3" -> {
                     souvenirsListMain = souvenirController.saveSouvenirController();
                     System.out.println(pressOne);
                     System.out.println(actionString);
-                    break;
-                case "4":
+                }
+                case "4" -> {
                     souvenirsListMain = souvenirController.editSouvenirController(souvenirsListMain);
                     System.out.println(pressOne);
                     System.out.println(actionString);
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     souvenirController.getSouvenirByOneManufacturers(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "6":
+                }
+                case "6" -> {
                     souvenirController.getSouvenirByOneCountry(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "7":
+                }
+                case "7" -> {
                     souvenirController.getSouvenirByPriceLessThen(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "8":
+                }
+                case "8" -> {
                     souvenirController.getSouvenirByManufacturers(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "9":
+                }
+                case "9" -> {
                     souvenirController.getSouvenirByNameAndYear(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "10":
+                }
+                case "10" -> {
                     souvenirController.getSouvenirByYears(souvenirsListMain);
                     System.out.println(actionString);
-                    break;
-                case "11":
+                }
+                case "11" -> {
                     souvenirsListMain = souvenirController.removeSouvenirsByManufacture(souvenirsListMain);
                     System.out.println(pressOne);
                     System.out.println(actionString);
-                    break;
-                case "0":
+                }
+                case "0" -> {
                     exit = option;
-                    break;
+                }
 
             }
         }

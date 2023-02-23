@@ -1,8 +1,7 @@
 2018: 
-Souvenir: T-Shirt, Siemens( USA ), Date Of Release: 2018-05-15, Price: 4 euro
-Souvenir: T-Shirt, Toyota( Japan ), Date Of Release: 2018-05-15, Price: 4 euro
+Souvenir: Cup, Boeing( USA ), Date Of Release: 2018-10-15, Price: 2 euro
+Souvenir: T-shirt, Boeing( USA ), Date Of Release: 2018-03-15, Price: 3 euro
+Souvenir: T-shirt, Siemens( USA ), Date Of Release: 2018-05-15, Price: 4 euro
 2020: 
 Souvenir: Cup, Channel( France ), Date Of Release: 2020-12-15, Price: 5 euro
 Souvenir: Cup, Kyivstar( Ukraine ), Date Of Release: 2020-09-15, Price: 6 euro
-2022: 
-Souvenir: Notebook, Adidas( Germany ), Date Of Release: 2022-01-15, Price: 7 euro

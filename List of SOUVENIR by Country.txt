@@ -1,4 +1,4 @@
 USA: 
 Souvenir: Cup, Boeing( USA ), Date Of Release: 2018-10-15, Price: 2 euro
-Souvenir: T-Shirt, Boeing( USA ), Date Of Release: 2018-05-15, Price: 4 euro
+Souvenir: T-shirt, Boeing( USA ), Date Of Release: 2018-03-15, Price: 3 euro
 Souvenir: T-shirt, Siemens( USA ), Date Of Release: 2018-05-15, Price: 4 euro
